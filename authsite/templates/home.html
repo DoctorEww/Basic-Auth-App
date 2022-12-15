@@ -1,0 +1,27 @@
+{% extends 'basesite.html' %}
+
+{% block title%}
+Home
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Home</h2>
+  Hi {{ user.username }}!
+    {% if user.is_superuser %}
+    <p>You're superuser!</p>
+    <p>Abuse your powers here</p>
+
+    <p><a href="/admin">Admin Panel</a></p>
+
+    {% endif %}
+
+    
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  
+{% else %}
+<h2>No Strangers!</h2>
+  <p>Please Login </p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
